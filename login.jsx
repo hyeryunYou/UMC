@@ -27,7 +27,7 @@ const Login = () => {
                 type="email" 
                 {...register('email')}
                 placeholder="이메일을 입력해주세요!"
-                onFocus={() => trigger('email')}
+                onBlur={() => trigger('email')}
                 />
                 <p>{errors.email?.message}</p>
             </div>
@@ -37,7 +37,7 @@ const Login = () => {
                 type="password" 
                 {...register("password")}
                 placeholder="비밀번호를 입력해주세요!"  
-                onFocus={()=>trigger("password")}
+                onBlur={()=>trigger("password")}
                 />
                 <p>{errors.password?.message}</p>
             </div>
