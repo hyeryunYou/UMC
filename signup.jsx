@@ -11,13 +11,9 @@ const Login = () => {
         passwordcheck: yup.string(). oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.').required('비밀번호 검증 또한 필수 입력요소입니다.')
     })
 
-    const {register, handleSubmit, formState: {errors}, watch, trigger} = useForm({
+    const {register, handleSubmit, formState: {errors}, trigger} = useForm({
         resolver: yupResolver(schema), mode:'onChange',
     });
-
-    const email = watch('email');
-    const password = watch('password');
-    const passwordcheck = watch('passwordcheck');
 
     const onSubmit = (data) => {
         console.log('폼 데이터 제출')
