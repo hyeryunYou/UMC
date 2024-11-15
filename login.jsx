@@ -10,8 +10,8 @@ const Login = () => {
         password: yup.string().min(8, '비밀번호는 8~16자 사이로 입력해주세요!').max(16, '비밀번호는 8~16자 사이로 입력해주세요!').required(),
     })
 
-    const {register, handleSubmit, formState: {errors}, setFocus, trigger} = useForm({
-        resolver: yupResolver(schema)
+    const {register, handleSubmit, formState: {errors}, trigger} = useForm({
+        resolver: yupResolver(schema), mode:'onChange',
     });
 
     const onSubmit = (data) => {
@@ -28,7 +28,6 @@ const Login = () => {
                 {...register('email')}
                 placeholder="이메일을 입력해주세요!"
                 onFocus={() => trigger('email')}
-                onBlur={() => trigger('email')}
                 />
                 <p>{errors.email?.message}</p>
             </div>
@@ -37,9 +36,8 @@ const Login = () => {
                 <input 
                 type="password" 
                 {...register("password")}
-                placeholder="비밀번호를 입력해주세요!" 
-                onFocus={()=>trigger("password")} 
-                onBlur={()=>trigger("password")}
+                placeholder="비밀번호를 입력해주세요!"  
+                onFocus={()=>trigger("password")}
                 />
                 <p>{errors.password?.message}</p>
             </div>

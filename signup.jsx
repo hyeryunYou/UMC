@@ -11,13 +11,9 @@ const Login = () => {
         passwordcheck: yup.string(). oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.').required('비밀번호 검증 또한 필수 입력요소입니다.')
     })
 
-    const {register, handleSubmit, formState: {errors}, watch, trigger} = useForm({
+    const {register, handleSubmit, formState: {errors}, trigger} = useForm({
         resolver: yupResolver(schema), mode:'onChange',
     });
-
-    const email = watch('email');
-    const password = watch('password');
-    const passwordcheck = watch('passwordcheck');
 
     const onSubmit = (data) => {
         console.log('폼 데이터 제출')
@@ -32,7 +28,7 @@ const Login = () => {
                 type="email" 
                 {...register('email')}
                 placeholder="이메일을 입력해주세요!"  
-                onBlur={()=>trigger("email")}
+                onFocus={()=>trigger("email")}
                 />
                 <p>{errors.email?.message}</p>
             </div>
@@ -42,7 +38,7 @@ const Login = () => {
                 type="password" 
                 {...register("password")}
                 placeholder="비밀번호를 입력해주세요!" 
-                onBlur={()=>trigger("password")}
+                onFocus={()=>trigger("password")}
                 />
                 <p>{errors.password?.message}</p>
             </div>
@@ -52,7 +48,7 @@ const Login = () => {
                 type="password" 
                 {...register("passwordcheck")}
                 placeholder="비밀번호를 다시 입력해주세요!" 
-                onBlur={()=>trigger("passwordcheck")}
+                onFocus={()=>trigger("passwordcheck")}
                 />
                 <p>{errors.passwordcheck?.message}</p>
             </div>
